@@ -1,0 +1,142 @@
+/*Write programs in C or CPP to implement following 2D transformation
+
+Apply Translation, Rotation and Scaling,Reflection on
+
+1. Point
+
+2. Line
+
+3. Triangle
+
+Create 3 separate programs.
+
+You may use switch case for Translation, Rotation and Scaling,Reflection.*/
+
+#include<graphics.h>
+#include<iostream>
+#include<math.h>
+
+using namespace std;
+int main()
+
+{
+      int gd=DETECT,gm;
+      int x1,x2,y1,y2,i,j,arr[2][2],x11,x22,y11,y22;
+    int x,y,ang;int sx,sy;
+      initgraph(&gd,&gm,0);
+
+      cout<<"Enter co ordinates of line"<<endl;
+      cin>>x1>>y1>>x2>>y2;
+      cout<<"Line printed"<<endl;
+     line (getmaxx()/2,0,getmaxx()/2,getmaxy());
+     line (0,getmaxy()/2,getmaxx(),getmaxy()/2);
+
+     line(x1,y1,x2,y2);
+     int choice;
+       while(choice!=6)
+      {
+     cout<<"Select choice ";
+     cout<<"Enter 1 for matrix transfromation \n 2 for Rotation \n 3 for scaling \n 4 for Reflection \n 5 for translation :"<<endl;
+     cin>>choice;
+
+         switch(choice)
+      {
+         case 1 : {
+                    cout<<"Enter transformation matrix : ";
+    for(i=0;i<2;i++)
+    {
+    for(j=0;j<2;j++)
+    {
+        cin>>arr[i][j];
+    }
+    }
+
+    x11=x1*arr[0][0] + y1* arr[1][0];
+    y11=x1*arr[0][1] + y1* arr[1][1];
+    x22=x2*arr[0][0] + y2* arr[1][0];
+    y22=x2*arr[0][1] + y2* arr[1][1];
+
+    cout<<"translated co ordinates: "<<x11<<"  "<<y11<<endl;
+    cout<<x22<<"  "<<y22<<endl;
+
+    line(x11,y11,x22,y22);
+         }
+         break;
+        case 2: {
+    cout<<"Enter Rotation angle in degree"<<endl;
+    cin>>ang;
+
+    x11=x1*cos(ang*3.14259/180) - y1*sin(ang*3.14259/180);
+    y11=x1*sin(ang*3.14259/180) + y1*cos(ang*3.14259/180);
+    x22=x2*cos(ang*3.14259/180) - y2*sin(ang*3.14259/180);
+    y22=x2*sin(ang*3.14259/180) + y2*cos(ang*3.14259/180);
+
+      cout<<"co ordinates after rotation : "<<x11<<"  "<<y11<<endl;
+    cout<<x22<<"  "<<y22<<endl;
+
+
+    line(x11,y11,x22,y22);
+        }
+        break;
+        case 3: {
+        cout<<"Enter Scaling factor : "<<endl;
+        cin>>sx>>sy;
+
+        x11=x1*sx;
+        y11=y1*sy;
+        x22=x2*sx;
+        y22=y2* sy;
+
+
+    cout<<"co ordinates after scaling : "<<x11<<"  "<<y11<<endl;
+    cout<<x22<<"  "<<y22<<endl;
+
+    line(x11,y11,x22,y22);
+        }
+        break;
+        case 4: {
+
+        x11=x1;
+    y11=-y1;
+    x22=x2;
+    y22=-y2;
+
+
+    cout<<"co ordinates after Reflection about x axis : "<<x11<<"  "<<y11<<endl;
+    cout<<x22<<"  "<<y22<<endl;
+
+    line(x11,y11,x22,y22);
+
+    x11=-x1;
+    y11=y1;
+    x22=-x2;
+    y22=y2;
+
+
+    cout<<"co ordinates after Reflection about y axis : "<<x11<<"  "<<y11<<endl;
+    cout<<x22<<"  "<<y22<<endl;
+
+    line(x11,y11,x22,y22);
+        }
+        break;
+        case 5 : { int x,y,a1,a2,b1,b2;
+    cout<<"Enter the Translation coordinates"<<endl;
+    cin>>x>>y;
+    a1=x1+x;
+    b1=y1+y;
+    a2=x2+x;
+    b2=y2+y;
+    line(a1,b1,a2,b2);}
+        case 6 : choice = 6;
+                 break;
+    break;
+        default : cout<<"invalid input"<<endl;
+     }
+
+
+    }
+    getch();
+      closegraph();
+      return 0;
+
+}
