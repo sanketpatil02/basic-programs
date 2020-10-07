@@ -1,0 +1,140 @@
+#include<graphics.h>
+#include<iostream>
+#include<math.h>
+
+using namespace std;
+int main()
+
+{
+      int gd=DETECT,gm;
+      int x1,x2,x3,y3,y1,y2,i,j,arr[2][2];
+    int x,y,tx,ty,ang;
+      initgraph(&gd,&gm,0);
+
+      cout<<"Enter co ordinates of corner 1"<<endl;
+      cin>>x1>>y1;
+      putpixel(x1,y1,WHITE);
+      cout<<"Enter co ordinates of corner 2"<<endl;
+      cin>>x2>>y2;
+      putpixel(x2,y2,WHITE);
+      cout<<"Enter co ordinates of corner 3"<<endl;
+      cin>>x3>>y3;
+      cout<<"Points printed"<<endl;
+       putpixel(x3,y3,WHITE);
+       line(x1,y1,x2,y2);
+       line(x2,y2,x3,y3);
+       line(x3,y3,x1,y1);
+       cout<<"Triangle Printed ."<<endl;
+
+     line (getmaxx()/2,0,getmaxx()/2,getmaxy());
+     line (0,getmaxy()/2,getmaxx(),getmaxy()/2);
+
+     int choice;
+     while(choice!=6)
+     {
+         cout<<"Enter 1.translation \n 2. Rotation \n 3.for Scaling \n 4.for Reflection :"<<endl;
+         cin>>choice;
+    switch(choice)
+    {
+        case 1 : { int x,y,a1,a2,a3,b1,b2,b3;
+    cout<<"Enter the Translation coordinates"<<endl;
+    cin>>x>>y;
+    a1=x1+x;
+    b1=y1+y;
+    a2=x2+x;
+    b2=y2+y;
+    a3=x3+x;
+    b3=y3+y;
+    line(a1,b1,a2,b2);
+    line(a2,b2,a3,b3);
+    line(a3,b3,a1,b1);}
+
+    break;
+
+    case 2 : {int c,s,x11,y11,x22,y22,x33,y33,angle;
+        cout<<"Enter rotation angle: ";
+    cin>>angle;
+    c = cos(angle *3.142/180);
+    s = sin(angle *3.142/180);
+    x11 = x1 * cos(angle *3.142/180) + y1 * sin(angle *3.142/180);
+    y11 = -x1 * sin(angle *3.142/180) + y1 * cos(angle *3.142/180);
+    x22 = x2 * cos(angle *3.142/180) + y2 * sin(angle *3.142/180);
+    y22 = -x2 * sin(angle *3.142/180) + y2 * cos(angle *3.142/180);
+    x33 = x3 * cos(angle *3.142/180) + y3 * sin(angle *3.142/180);
+    y33 = -x3 * sin(angle *3.142/180) + y3 * cos(angle *3.142/180);
+
+    cout<<"Transformed coordinated are";
+    cout<<x11<<"  "<<y11<<endl;
+    cout<<x22<<"  "<<y22<<endl;
+    cout<<x33<<"  "<<y33<<endl;
+
+    line(x11, y11 ,x22, y22);
+    line(x22,y22, x33,y33);
+    line(x33, y33, x11, y11);  }
+    break;
+
+    case 3 : {int x11,y11,x22,y22,x33,y33,sx,sy;
+        cout<<"Enter Scaling factor : "<<endl;
+        cin>>sx>>sy;
+
+        x11=x1*sx;
+    y11=y1*sy;
+    x22=x2*sx;
+    y22=y2* sy;
+    x33=x3*sx;
+    y33=y3*sy;
+    cout<<"Transformed coordinated are";
+    cout<<x11<<"  "<<y11<<endl;
+    cout<<x22<<"  "<<y22<<endl;
+    cout<<x33<<"  "<<y33<<endl;
+
+    line(x11, y11 ,x22, y22);
+    line(x22,y22, x33,y33);
+    line(x33, y33, x11, y11);  }
+    break;
+    case 4: {int x11,y11,x22,y22,x33,y33;
+    x11=x1;
+    y11=-y1;
+    x22=x2;
+    y22=-y2;
+    x33=x3;
+    y33=-y3;
+
+
+    cout<<"co ordinates after Reflection about x axis : "<<x11<<"  "<<y11<<endl;
+    cout<<x22<<"  "<<y22<<endl;
+    cout<<x33<<"  "<<y33<<endl;
+
+    line(x11,y11,x22,y22);
+    line(x22,y22, x33,y33);
+    line(x33, y33, x11, y11);
+
+    x11=-x1;
+    y11=y1;
+    x22=-x2;
+    y22=y2;
+    x33=-x3;
+    y33=-y3;
+
+
+    cout<<"co ordinates after Reflection about y axis : "<<x11<<"  "<<y11<<endl;
+    cout<<x22<<"  "<<y22<<endl;cout<<x33<<"  "<<y33<<endl;
+
+
+    line(x11,y11,x22,y22);
+    line(x22,y22, x33,y33);
+    line(x33, y33, x11, y11);}
+    case 5: choice=6;
+            break;
+    default : cout<<"invalid input"<<endl;
+    }
+     }
+
+      getch();
+
+      closegraph();
+      return 0;
+
+}
+
+
