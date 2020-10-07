@@ -1,0 +1,79 @@
+/*Assignment No 3: 2D Transformation
+Write programs in C or CPP to implement following 2D transformation
+
+Apply Translation, Rotation and Scaling,Reflection on
+
+1. Point
+
+2. Line
+
+3. Triangle
+
+Create 3 separate programs.
+
+You may use switch case for Translation, Rotation and Scaling,Reflection.
+*/
+
+#include<iostream>
+#include<graphics.h>
+
+using namespace std;
+
+void translation(int,int,int,int);
+
+int main();
+
+int main()
+{
+    int gd=DETECT,gm;
+    initgraph(&gd,&gm,0);
+    int n;
+
+    int x1,y1,x,y;
+
+    x1=getmaxx()/2;
+    y1=getmaxy()/2;
+
+    cout << "\nX=" <<x1 <<"\nY=" <<y1 ;
+
+    line(x1,0,x1,2*y1);
+    line(0,y1,2*x1,y1);
+
+    cout << "Enter Point Co-ordinates:" <<endl;
+    cin >> x >> y;
+    putpixel(x1+x,y1-y,12);
+    circle(x1+x,y1-y,4);
+
+    while(1)
+    {
+        cout << "\n\n1.Translation.\n2.Exit\nEnter Your Choice: ";
+        cin >> n;
+
+        switch(n)
+        {
+            case 1: translation(x,y,x1,y1);
+            break;
+            case 2: exit(0);
+            default: cout << "\nEnter valid option.\n";
+        }
+    }
+    return 0;
+}
+
+void translation(int x,int y,int x1,int y1)
+{
+    int x2,y2;
+    int a,b,c,d;
+
+    cout << "Enter value of a,b,c,d: "<< endl;
+    cin >> a >> b >> c >> d;
+
+    x2=a*x+c*y;
+    y2=b*x+d*y;
+
+    cout << "X1= "<<x2 <<"\nX2= "<<y2;
+    putpixel(x1+x2,y1-y2,10);
+    circle(x1+x2,y1-y2,4);
+
+
+}
